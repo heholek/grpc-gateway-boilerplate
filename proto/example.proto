@@ -2,8 +2,6 @@ syntax="proto3";
 
 package example;
 
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/struct.proto";
 import "google/api/annotations.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 
@@ -36,17 +34,6 @@ service UserService {
       tags: "Users"
     };
   }
-  rpc GetUser(GetUserRequest) returns (User) {
-    option (google.api.http) = {
-      // Route to this method from GET requests to /api/v1/users/{id}
-      get: "/api/v1/users/{id}"
-    };
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-      summary: "Get a user by their ID"
-      description: "Gets a user from the server."
-      tags: "Users"
-    };
-  }
   rpc ListUsers(ListUsersRequest) returns (stream User) {
     option (google.api.http) = {
       // Route to this method from GET requests to /api/v1/users
@@ -62,11 +49,6 @@ service UserService {
 
 message AddUserRequest {
   string email = 1;
-  google.protobuf.Struct metadata = 2;
-}
-
-message GetUserRequest {
-  string id = 1;
 }
 
 message ListUsersRequest {}
@@ -74,6 +56,4 @@ message ListUsersRequest {}
 message User {
   string id = 1;
   string email = 2;
-  google.protobuf.Timestamp create_time = 3;
-  google.protobuf.Struct metadata = 4;
 }
