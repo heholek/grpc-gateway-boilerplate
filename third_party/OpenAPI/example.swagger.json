@@ -57,6 +57,32 @@
           "Users"
         ]
       }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "summary": "Get a user by their ID",
+        "description": "Gets a user from the server.",
+        "operationId": "GetUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/exampleUser"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Users"
+        ]
+      }
     }
   },
   "definitions": {
