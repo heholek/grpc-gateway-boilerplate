@@ -38,6 +38,10 @@ func getOpenAPIHandler() http.Handler {
 	return http.FileServer(statikFS)
 }
 
+func init() {
+	runtime.HTTPError = server.CustomErrorHandler
+}
+
 func main() {
 	// Adds gRPC internal logs. This is quite verbose, so adjust as desired!
 	log := grpclog.NewLoggerV2(os.Stdout, ioutil.Discard, ioutil.Discard)
